@@ -13,8 +13,8 @@ const MainApp: React.FC = () => {
   const { user, isLoading } = useAuth();
 
   useEffect(() => {
-    // If user is not logged in, show login page
-    if (!isLoading && !user) {
+    // If user is not logged in, show login page (but don't override register page)
+    if (!isLoading && !user && currentPage !== 'register') {
       setCurrentPage('login');
     } else if (!isLoading && user) {
       // If user is logged in and on auth pages, redirect to products
@@ -22,7 +22,7 @@ const MainApp: React.FC = () => {
         setCurrentPage('products');
       }
     }
-  }, [user, isLoading, currentPage]);
+  }, [user, isLoading]);
 
   const handleNavigate = (page: string) => {
     setCurrentPage(page);
