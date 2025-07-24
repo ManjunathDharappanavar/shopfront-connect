@@ -26,7 +26,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onNavigate }) => {
       username: formData.username,
       email: formData.email,
       password: formData.password,
-      ...(formData.contact && { contact: parseInt(formData.contact) }),
+      ...(formData.contact && formData.contact.trim() && { contact: parseInt(formData.contact) }),
     };
     
     const success = await register(userData);
